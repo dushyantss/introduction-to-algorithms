@@ -23,6 +23,10 @@ public class InsertionSort{
 
     public static void main(String[] args){
         // test arrays
+        testSort();
+    }
+
+    private static void testSort(){
         int[] t1 = null;
         int[] t2 = new int[0];
         int[] t3 = new int[]{1};

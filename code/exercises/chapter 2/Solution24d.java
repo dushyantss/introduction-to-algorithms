@@ -20,7 +20,7 @@ public class Solution24d{
         int j, k, result = 0;
         j = k = 0;
         for(int i = low; i <= high; i++){
-            if(l[j] < r[k]){
+            if(l[j] <= r[k]){
                 arr[i] = l[j];
                 j++;
             } else{
@@ -58,11 +58,13 @@ public class Solution24d{
         int[] t3 = new int[]{1};
         int[] t4 = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9};
         int[] t5 = new int[]{9, 8, 7, 6, 5, 4, 3, 2, 1};
+        int[] t6 = new int[]{9, 8, 7, 6, 5, 4, 5, 8, 1};
 
         System.out.println(sort(t1, 0, 1));
         System.out.println(sort(t2, 0, t2.length - 1));
         System.out.println(sort(t3, 0, t3.length - 1));
         System.out.println(sort(t4, 0, t4.length - 1));
         System.out.println(sort(t5, 0, t5.length - 1));
+        System.out.println(sort(t6, 0, t6.length - 1));
     }
 }

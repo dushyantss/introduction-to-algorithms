@@ -1,30 +1,13 @@
 import java.util.Arrays;
 
-/**
- * MaxHeap means A[parent] >= A[child] and MinHeap is vice versa
- * heapSize is the size and not the last index upto which we can put values
- * 
- * @author Dushyant Singh Shekhawat
- */
-public class Heap {
+public class PriorityQueue{
     int[] heap;
     int heapSize;
 
-    public Heap(int capacity, int heapSize) {
+    // create an empty heap with zero initial heapSize
+    public PriorityQueue(int capacity){
         heap = new int[capacity];
-        this.heapSize = heapSize;
-    }
-
-    public Heap(int[] arr) throws NullPointerException {
-        if (arr == null) {
-            throw new NullPointerException();
-        }
-        heap = Arrays.copyOf(arr, arr.length);
-        heapSize = heap.length;
-    }
-
-    public int getHeapSize() {
-        return heapSize;
+        heapSize = 0;
     }
 
     public int[] getHeap() {
@@ -155,7 +138,42 @@ public class Heap {
         }
     }
 
-    public static void main(String[] args) {
+    public int max(){
+        return heap[0];
+    }
+
+    public int extractMax() throws Exception{
+        if(heapSize < 1){
+            throw new Exception();
+        }
+        int max = heap[0];
+        heap[0] = heap[--heapSize];
+        buildMaxHeap();
+        return max;
+    }
+
+    public void increaseKey(int index, int key) throws Exception{
+        if(index < 0 || index > heap.length - 1 || key < heap[index]){
+            throw new Exception();
+        }
+        heap[index] = key;
+        while(parent(index) >= 0 && heap[parent(index)] < heap[index]){
+            swap(index, parent(index));
+            index = parent(index);
+        }
+    }
+
+    public void insert(int key) throws IndexOutOfBoundsException, Exception{
+        if(heapSize == heap.length){
+            throw new IndexOutOfBoundsException();
+        }
+        heap[heapSize] = Integer.MIN_VALUE;
+        heapSize++;
+        increaseKey(heapSize - 1, key);
+
+    }
+
+    public static void main(String[] args) throws IndexOutOfBoundsException, Exception {
         int[] t1 = null;
         int[] t2 = new int[0];
         int[] t3 = new int[] { 1 };
@@ -163,16 +181,19 @@ public class Heap {
         int[] t5 = new int[] { 9, 8, 7, 6, 5, 4, 3, 2, 1 };
         int[] t6 = new int[] { 9, 8, 7, 6, 15, 24, 3, 2, 13 };
 
-        Heap h1 = new Heap(t4);
-        h1.buildMaxHeap();
-        System.out.println(Arrays.toString(h1.getHeap()));
+        PriorityQueue queue = new PriorityQueue(16);
+        queue.insert(13);
+        queue.insert(16);      
+        queue.insert(11);      
+        queue.insert(1);      
+        queue.insert(136);      
+        queue.insert(14);      
+        queue.insert(56);
 
-        Heap h2 = new Heap(t5);
-        h2.buildMinHeap();
-        System.out.println(Arrays.toString(h2.getHeap()));
-
-        Heap h3 = new Heap(t6);
-        h3.sort();
-        System.out.println(Arrays.toString(h3.getHeap()));        
+        System.out.println(Arrays.toString(queue.getHeap()));   
+        int max = queue.extractMax();
+        System.out.println(Arrays.toString(queue.getHeap()) + " " + max);  
+        queue.increaseKey(3, 4);
+        System.out.println(Arrays.toString(queue.getHeap()));
     }
 }

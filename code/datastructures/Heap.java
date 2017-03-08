@@ -145,12 +145,22 @@ public class Heap {
         }
     }
 
+    public void sort(){
+        buildMaxHeap();
+        for(int i = heap.length - 1; i > 0; i--){
+            swap(i, 0);
+            heapSize--;
+            maxHeapify(0);
+        }
+    }
+
     public static void main(String[] args) {
         int[] t1 = null;
         int[] t2 = new int[0];
         int[] t3 = new int[] { 1 };
         int[] t4 = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         int[] t5 = new int[] { 9, 8, 7, 6, 5, 4, 3, 2, 1 };
+        int[] t6 = new int[] { 9, 8, 7, 6, 15, 24, 3, 2, 13 };
 
         Heap h1 = new Heap(t4);
         h1.buildMaxHeap();
@@ -159,5 +169,9 @@ public class Heap {
         Heap h2 = new Heap(t5);
         h2.buildMinHeap();
         System.out.println(Arrays.toString(h2.getHeap()));
+
+        Heap h3 = new Heap(t6);
+        h3.sort();
+        System.out.println(Arrays.toString(h3.getHeap()));        
     }
 }

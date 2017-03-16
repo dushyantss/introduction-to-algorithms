@@ -22,6 +22,29 @@ public class RandomisedSelect{
         }
     }
 
+    public static int selectIterative(int[] arr, int i){
+        if(arr == null || i <= 0 || i > arr.length){
+            return -1;
+        }
+        return selectIterativeHelper(arr, 0, arr.length - 1, i);
+    }
+
+    public static int selectIterativeHelper(int[] arr, int low, int high, int i){
+        while(low != high){
+            int mid = randomisedPartition(arr, low, high);
+            int val = mid - low + 1;
+            if(i == val){
+                return arr[mid];
+            } else if(i < val){
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+                i = i - val;
+            }
+        }
+        return arr[low];
+    }
+
     public static int randomisedPartition(int[] arr, int low, int high){
         int p = (int)(Math.random() * (high - low)) + low;
         swap(arr, high, p);
@@ -54,11 +77,18 @@ public class RandomisedSelect{
         int[] t3 = new int[]{1};
         int[] t4 = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9};
         int[] t5 = new int[]{9, 8, 7, 6, 5, 4, 3, 2, 1};
+        int[] t6 = new int[]{9, 8, 17, 6, 5, 24, 3, 20, 1};
 
-        System.out.println(select(t1, 2));
-        System.out.println(select(t2, 2));
-        System.out.println(select(t3, 2));
-        System.out.println(select(t4, 2));
-        System.out.println(select(t5, 2));
+        // System.out.println(select(t1, 2));
+        // System.out.println(select(t2, 2));
+        // System.out.println(select(t3, 2));
+        // System.out.println(select(t4, 2));
+        // System.out.println(select(t5, 2));
+        System.out.println(selectIterative(t1, 2));
+        System.out.println(selectIterative(t2, 2));
+        System.out.println(selectIterative(t3, 2));
+        System.out.println(selectIterative(t4, 2));
+        System.out.println(selectIterative(t5, 2));
+        System.out.println(selectIterative(t6, 7));
     }
 }

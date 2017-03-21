@@ -46,7 +46,47 @@ public class Solution1213{
         if(node == null)
             return;
 
-        
+        // go as much left as you can
+        // if no more left, print and try to go right
+        //  if can then repeat above
+        // else go up one level, print and check if came
+        // from left then then try right step
+        // else go up again
+
+        boolean fromLeft = false, fromRight = false;
+
+        while(node != null){
+
+            if(!fromLeft && !fromRight){
+                node = leftMost(node);
+            }
+            fromLeft = false;
+            if(!fromRight){
+                System.out.println(node.val);
+            }
+            
+            if(!fromRight && node.right != null){
+                node = node.right;
+                fromRight = false;
+            } else {
+                fromRight = false;
+                if(node.parent != null){
+                    if(node == node.parent.left){
+                        fromLeft = true;
+                    } else {
+                        fromRight = true;
+                    }
+                }
+                node = node.parent;
+            }
+        }
+    }
+
+    private static Node leftMost(Node node){
+        while(node.left != null){
+            node = node.left;
+        }
+        return node;
     }
 
     public static void main(String[] args){

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Selection sort, another famous sorting algorithm
+# SelectionSort, Time: O(N*N), Space: O(1)
 class SelectionSort
   # main sort method
   def sort(list)

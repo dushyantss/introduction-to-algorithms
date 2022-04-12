@@ -37,7 +37,9 @@ GEM
     launchy (2.5.0)
       addressable (~> 2.7)
     minitest (5.14.4)
-    nokogiri (1.11.3-x86_64-darwin)
+    nokogiri (1.13.4-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.13.4-x86_64-linux)
       racc (~> 1.4)
     parallel (1.20.1)
     parser (3.0.1.1)
@@ -45,7 +47,7 @@ GEM
     path_expander (1.1.0)
     psych (3.3.1)
     public_suffix (4.0.6)
-    racc (1.5.2)
+    racc (1.6.0)
     rainbow (3.0.0)
     rake (13.0.3)
     reek (6.0.4)
@@ -117,6 +119,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-20
+  x86_64-linux
 
 DEPENDENCIES
   minitest

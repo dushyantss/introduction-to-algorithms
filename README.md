@@ -1,2 +1,3 @@
 # Intro-to-Algorithms
-Restarting CLRS in Ruby
+
+Restarting CLRS 4th edition in Ruby

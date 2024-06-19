@@ -1,0 +1,15 @@
+---
+include:
+- "fourth_edition/ruby/**/*.rb"
+exclude:
+- fourth_edition/ruby/spec/**/*
+- fourth_edition/ruby/test/**/*
+- fourth_edition/ruby/vendor/**/*
+- "fourth_edition/ruby/.bundle/**/*"
+require: []
+domains: []
+reporters: []
+formatter: []
+require_paths: []
+plugins: []
+max_files: 0
